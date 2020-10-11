@@ -30,20 +30,23 @@ public class LoginActivity extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), activity_portal.class);
                 // validate user
-//                if (ed1.getText().toString().equals("admin") &&
-//                        ed2.getText().toString().equals("admin"))
+                if (ed1.getText().toString().equals("admin") && ed2.getText().toString().equals("admin")){
+
+                    startActivity(intent);
+
+                }
               //if (validateUser(user)) {
-                    Toast.makeText(getApplicationContext(),
-                            "LOGIN SUCCESSFUL", Toast.LENGTH_LONG).show();
-                  startActivity(intent);
+                  //  Toast.makeText(getApplicationContext(),
+                  //          "LOGIN SUCCESSFUL", Toast.LENGTH_LONG).show();
+
               //}
-              //else {
-                //    Toast.makeText(getApplicationContext(), "Wrong Credentials", Toast.LENGTH_LONG).show();
-                  //  counter--;
-                    //if (counter == 0) {
-                      //  b1.setEnabled(false);
-                    //}
-                //}
+              else {
+                    Toast.makeText(getApplicationContext(), "Wrong Credentials", Toast.LENGTH_LONG).show();
+                    counter--;
+                    if (counter == 0) {
+                        b1.setEnabled(false);
+                    }
+                }
             }
         });
 
