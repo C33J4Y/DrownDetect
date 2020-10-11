@@ -1,8 +1,15 @@
 package com.example.mymobileapplogin;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "user_table")
 public class User {
 
+    //Sets int id as the Primary Key and it is auto-generated
+    @PrimaryKey(autoGenerate = true)
     private int id;
+
     private String  Name;
     private String  email;
     private String  mobile;
@@ -10,6 +17,16 @@ public class User {
     private String  role;
     private String  status;
     private String  last_update;
+
+    public User(String name, String email, String mobile, String password, String role, String status, String last_update) {
+        Name = name;
+        this.email = email;
+        this.mobile = mobile;
+        this.password = password;
+        this.role = role;
+        this.status = status;
+        this.last_update = last_update;
+    }
 
     public String getName() {
         return Name;
