@@ -10,7 +10,7 @@ public class User {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    private String  Name;
+    private String  name;
     private String  email;
     private String  mobile;
     private String  password;
@@ -19,7 +19,8 @@ public class User {
     private String  last_update;
 
     public User(String name, String email, String mobile, String password, String role, String status, String last_update) {
-        Name = name;
+
+        this.name = name;
         this.email = email;
         this.mobile = mobile;
         this.password = password;
@@ -29,11 +30,11 @@ public class User {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public String getEmail() {
@@ -94,7 +95,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", Name=" + Name + ", email=" + email
+        return "User [id=" + id + ", Name=" + name + ", email=" + email
                 + ", mobile=" + mobile + ", password=" + password + ", role="
                 + role + ", status=" + status + ", last_update=" + last_update
                 + "]";
