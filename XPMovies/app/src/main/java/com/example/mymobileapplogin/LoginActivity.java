@@ -11,9 +11,11 @@ import android.widget.Toast;
 
 public class LoginActivity extends Activity {
     Button b1;
-    EditText ed1, ed2;
+    EditText username, password;
+    String usernameValue, passwordValue;
     TextView t1;
     User user;
+    DatabaseHelper databaseHelper;
 
     int counter = 3;
     @Override
@@ -22,15 +24,24 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.activity_login);
 
         b1 = (Button) findViewById(R.id.LoginButton);
-        ed1 = (EditText) findViewById(R.id.emailText);
-        ed2 = (EditText) findViewById(R.id.passwordText);
+        username = (EditText) findViewById(R.id.emailText);
+        password = (EditText) findViewById(R.id.passwordText);
+        databaseHelper = new DatabaseHelper(this);
+
+        usernameValue = username.getText().toString();
+        passwordValue = password.getText().toString();
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                usernameValue = username.getText().toString();
+                passwordValue = password.getText().toString();
+
+
                 Intent intent = new Intent(getApplicationContext(), activity_portal.class);
                 // validate user
-                if (ed1.getText().toString().equals("admin") && ed2.getText().toString().equals("admin")){
+                //if (username.getText().toString().equals("admin") && password.getText().toString().equals("admin")){
+                if(databaseHelper.isLoginValid(usernameValue, passwordValue)){
 
                     startActivity(intent);
 
