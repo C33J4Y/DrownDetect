@@ -14,7 +14,7 @@ public class LoginActivity extends Activity {
     EditText username, password;
     String usernameValue, passwordValue;
     TextView t1;
-    User user;
+    //User user;
     DatabaseHelper databaseHelper;
 
     int counter = 3;
@@ -65,19 +65,21 @@ public class LoginActivity extends Activity {
         t1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createUser( user );
+                //createUser( user );
+                Intent intent = new Intent(LoginActivity.this, CreateUserActivity.class);
+                startActivity(intent);
             }
         });
 
     }
 
-    private void createUser(User user) {
-        Intent intent=new Intent(this,CreateUserActivity.class);
-        startActivity(intent);
-    }
-
-    private boolean validateUser(User user) {
-        //Call db functions to see if user exists and validate password
-        return true;
-    }
+//    private void createUser(User user) {
+//        Intent intent=new Intent(this,CreateUserActivity.class);
+//        startActivity(intent);
+//    }
+//
+//    private boolean validateUser(User user) {
+//        //Call db functions to see if user exists and validate password
+//        return true;
+//    }
 }
