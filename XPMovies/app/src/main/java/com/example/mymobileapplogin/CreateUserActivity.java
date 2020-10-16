@@ -47,6 +47,7 @@ public class CreateUserActivity extends Activity {
 
                   databaseHelper.insertUser(contentValues);
                   Toast.makeText(CreateUserActivity.this, "User Registered.", Toast.LENGTH_SHORT).show();
+        // TODO: 10/16/2020 At this point the application should take you back to the login activity.
 
               }else{
                   Toast.makeText(CreateUserActivity.this, "Complete all fields.", Toast.LENGTH_SHORT).show();

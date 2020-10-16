@@ -19,6 +19,7 @@ public class activity_portal extends AppCompatActivity {
 
         signOutButton = findViewById(R.id.textSignOut);
         perimeterCamButton = (Button) findViewById(R.id.perimeterButton);
+        // TODO: 10/16/2020 Need to implement a pool_camView class and layout.
 
         perimeterCamButton.setOnClickListener(new View.OnClickListener() {
             @Override
