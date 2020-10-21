@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".perimeter_camView"></activity>
+        <activity android:name=".pool_camView"></activity>
+        <activity android:name=".perimeter_camView" />
         <activity android:name=".activity_portal" />
         <activity android:name=".LoginActivity">
             <intent-filter>

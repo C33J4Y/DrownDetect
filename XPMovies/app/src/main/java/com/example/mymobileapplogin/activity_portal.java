@@ -11,6 +11,7 @@ import android.widget.TextView;
 public class activity_portal extends AppCompatActivity {
     TextView signOutButton;
     Button perimeterCamButton;
+    Button poolCamButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +20,8 @@ public class activity_portal extends AppCompatActivity {
 
         signOutButton = findViewById(R.id.textSignOut);
         perimeterCamButton = (Button) findViewById(R.id.perimeterButton);
-        // TODO: 10/16/2020 Need to implement a pool_camView class and layout.
+        poolCamButton = (Button) findViewById(R.id.poolButton);
+
 
         perimeterCamButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,6 +31,16 @@ public class activity_portal extends AppCompatActivity {
 
             }
         });
+
+        poolCamButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), pool_camView.class);
+                startActivity(intent);
+
+            }
+        });
+
 
 
 
