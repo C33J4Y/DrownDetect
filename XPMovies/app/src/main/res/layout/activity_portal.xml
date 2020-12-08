@@ -18,8 +18,9 @@
         android:textColor="#483d8b"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="116dp"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -67,9 +68,12 @@
         android:id="@+id/alertButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/btn_rounded"
         android:backgroundTint="@android:color/holo_red_dark"
         android:onClick="sendOnChannel1"
         android:text="Alert"
+        android:textAlignment="center"
+        android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/poolButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.452"
