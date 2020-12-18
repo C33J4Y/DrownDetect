@@ -20,14 +20,6 @@ public class pool_camView extends AppCompatActivity {
         setContentView(R.layout.activity_pool_cam_view);
 
         switchViewButton = findViewById(R.id.switchViewButton);
-//        VideoView videoView = findViewById(R.id.video_view);
-//        String videoPath = "android.resource://" + getPackageName() + "/" + R.raw.video;
-//        Uri uri = Uri.parse(videoPath);
-//        videoView.setVideoURI(uri);
-//
-//        MediaController mediaController = new MediaController(this);
-//        videoView.setMediaController(mediaController);
-//        mediaController.setAnchorView(videoView);
 
         WebView webView = new WebView(this);
         webView.loadUrl("http://10.12.135.145:8081");
@@ -35,7 +27,6 @@ public class pool_camView extends AppCompatActivity {
         webView.getSettings().setLoadWithOverviewMode(true);
         webView.getSettings().setUseWideViewPort(true);
         setContentView(webView);
-
 
         switchViewButton.setOnClickListener(new View.OnClickListener() {
             @Override

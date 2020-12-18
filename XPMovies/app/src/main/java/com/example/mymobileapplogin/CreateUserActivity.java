@@ -5,14 +5,11 @@ import android.content.ContentValues;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class CreateUserActivity extends Activity {
-
-    ImageView imageView;
     TextView username, email, password;
     String usernameValue, emailValue, passwordValue;
     Button createUser;
@@ -31,8 +28,7 @@ public class CreateUserActivity extends Activity {
         databaseHelper = new DatabaseHelper(this);
 
 
-
-      createUser.setOnClickListener(new View.OnClickListener() {
+        createUser.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
               usernameValue = username.getText().toString();
@@ -56,11 +52,5 @@ public class CreateUserActivity extends Activity {
       });
 
     }
-
-//    private void createUser() {
-//        Toast.makeText(getApplicationContext(), "New User Created", Toast.LENGTH_LONG).show();
-//        System.out.println("");
-//        finish();
-//    }
 }
 

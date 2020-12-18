@@ -14,7 +14,6 @@ public class LoginActivity extends Activity {
     EditText username, password;
     String usernameValue, passwordValue;
     TextView t1;
-    //User user;
     DatabaseHelper databaseHelper;
 
     int counter = 3;
@@ -40,18 +39,10 @@ public class LoginActivity extends Activity {
 
                 Intent intent = new Intent(getApplicationContext(), activity_portal.class);
                 // validate user
-                //if (username.getText().toString().equals("admin") && password.getText().toString().equals("admin")){
                 if(databaseHelper.isLoginValid(usernameValue, passwordValue)){
-
                     startActivity(intent);
-
                 }
-              //if (validateUser(user)) {
-                  //  Toast.makeText(getApplicationContext(),
-                  //          "LOGIN SUCCESSFUL", Toast.LENGTH_LONG).show();
-
-              //}
-              else {
+                else {
                     Toast.makeText(getApplicationContext(), "Wrong Credentials", Toast.LENGTH_LONG).show();
                     counter--;
                     if (counter == 0) {
@@ -65,7 +56,6 @@ public class LoginActivity extends Activity {
         t1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //createUser( user );
                 Intent intent = new Intent(LoginActivity.this, CreateUserActivity.class);
                 startActivity(intent);
             }
@@ -73,13 +63,5 @@ public class LoginActivity extends Activity {
 
     }
 
-//    private void createUser(User user) {
-//        Intent intent=new Intent(this,CreateUserActivity.class);
-//        startActivity(intent);
-//    }
-//
-//    private boolean validateUser(User user) {
-//        //Call db functions to see if user exists and validate password
-//        return true;
-//    }
+
 }

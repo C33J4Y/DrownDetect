@@ -3,27 +3,22 @@ package com.example.mymobileapplogin;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-
 import android.app.Notification;
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
 import static com.example.mymobileapplogin.Notifications.CHANNEL_1_ID;
+import static com.example.mymobileapplogin.Notifications.CHANNEL_2_ID;
 
 public class activity_portal extends AppCompatActivity {
     TextView signOutButton;
@@ -33,7 +28,7 @@ public class activity_portal extends AppCompatActivity {
 
     //Server(RPi) IP address and port listening for connection
     public static final int SERVERPORT = 8123;
-    public static final String SERVER_IP = "10.0.0.244";
+    public static final String SERVER_IP = "172.20.10.2";
     private ClientThread clientThread;
     private Thread thread;
 
@@ -53,7 +48,6 @@ public class activity_portal extends AppCompatActivity {
         thread = new Thread(clientThread);
         thread.start();
 
-
         perimeterCamButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,9 +66,6 @@ public class activity_portal extends AppCompatActivity {
             }
         });
 
-
-
-
         signOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,9 +77,8 @@ public class activity_portal extends AppCompatActivity {
 
         }
 
+    //Alerts user of a possible drowning
     public void sendOnChannel1(View v) {
-        //String title = editTextTitle.getText().toString();
-        //String message = editTextMessage.getText().toString();
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_1_ID)
                 .setSmallIcon(R.drawable.ic_warning)
                 .setContentTitle("ALERT")
@@ -101,10 +91,26 @@ public class activity_portal extends AppCompatActivity {
 
     }
 
+    //Alerts user that people have entered the pool
+    public void sendOnChannel2(View v) {
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_2_ID)
+                .setSmallIcon(R.drawable.ic_warning)
+                .setContentTitle("Warning")
+                .setContentText("People have entered the pool area.")
+                .setPriority(NotificationCompat.PRIORITY_LOW)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .build();
+        notificationManager.notify(2, notification);
+
+
+    }
+
     class ClientThread implements Runnable {
 
         private Socket socket;
         private BufferedReader input;
+        private String message;
+        View v;
 
 
         @Override
@@ -113,37 +119,25 @@ public class activity_portal extends AppCompatActivity {
             try {
                 InetAddress serverAddr = InetAddress.getByName(SERVER_IP);
                 socket = new Socket(serverAddr, SERVERPORT);
+                this.input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                message = input.readLine();
+
+                activity_portal.this.runOnUiThread(new Runnable() {
+                    public void run() {
+
+                        Toast.makeText(activity_portal.this, message, Toast.LENGTH_SHORT).show();
+                        sendOnChannel2(v);
 
 
-
-                while (!Thread.currentThread().isInterrupted()) {
-
-                    this.input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                    String message = input.readLine();
-
-                    activity_portal.this.runOnUiThread(new Runnable() {
-                        public void run() {
-                            Toast.makeText(activity_portal.this, "Hello!", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-                    if (null == message || "Disconnect".contentEquals(message)) {
-                        Thread.interrupted();
-                        message = "Server Disconnected.";
-                        //showMessage(message, Color.RED);
-                        break;
                     }
-                   // showMessage("Server: " + message, clientTextColor);
-                }
+                });
+
 
             } catch (UnknownHostException e1) {
                 e1.printStackTrace();
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
-
         }
-
-
     }
 }
